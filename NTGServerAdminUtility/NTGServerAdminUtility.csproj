@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Helpers.cs" />
+    <Compile Include="Classes\HotKeyManager.cs" />
     <Compile Include="Classes\Network.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

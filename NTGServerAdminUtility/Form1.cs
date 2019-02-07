@@ -24,6 +24,7 @@ namespace NTGServerAdminUtility
         public Form1()
         {
             InitializeComponent();
+            nStatus.ForeColor = Color.Green;
             nStatus.Text = "Connected!";
         }
 

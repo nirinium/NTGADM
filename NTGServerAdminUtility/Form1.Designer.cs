@@ -222,11 +222,10 @@
             // nTxtLog
             // 
             this.nTxtLog.EdgeMode = ScintillaNET.EdgeMode.MultiLine;
-            this.nTxtLog.Location = new System.Drawing.Point(12, 288);
+            this.nTxtLog.Location = new System.Drawing.Point(12, 278);
             this.nTxtLog.Name = "nTxtLog";
-            this.nTxtLog.Size = new System.Drawing.Size(418, 440);
+            this.nTxtLog.Size = new System.Drawing.Size(418, 450);
             this.nTxtLog.TabIndex = 5;
-            this.nTxtLog.Text = "nTxtLog";
             this.nTxtLog.UseTabs = true;
             // 
             // Form1
