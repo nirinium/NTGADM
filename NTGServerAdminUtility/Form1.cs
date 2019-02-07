@@ -11,6 +11,7 @@ using System.Management.Automation;
 using System.Threading;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using ScintillaNET;
 
 namespace NTGServerAdminUtility
 {
@@ -23,6 +24,7 @@ namespace NTGServerAdminUtility
         public Form1()
         {
             InitializeComponent();
+            nStatus.Text = "Connected!";
         }
 
 
@@ -40,6 +42,7 @@ namespace NTGServerAdminUtility
             }
             nTxtLog.AppendText(" [ " + DateTime.Now + " ] " + " Flushing DNS..." + Environment.NewLine);
             nTxtLog.AppendText(" [ " + DateTime.Now + " ] DEBUG " + "ITEM INDEX = " + selectedItem + Environment.NewLine);
+            
             
 
         }
@@ -111,7 +114,7 @@ namespace NTGServerAdminUtility
                 nTxtBox.Select(start, end - start);
                 {
                     nTxtBox.SelectionColor = color;
-                    nTxtBox.SelectionFont = new Font("Consolas", 10);
+                    nTxtBox.SelectionFont = new Font("Consolas", 8);
                     nTxtBox.BackColor = backcolor;
                 }
                 nTxtBox.SelectionLength = 0; // clear
@@ -120,13 +123,14 @@ namespace NTGServerAdminUtility
             if (checkBox1.Checked == true)
             {
 
-                AppendText(this.nTxtLog, Color.LimeGreen, Font, Color.Black, "");
+                //AppendText(this.nTxtLog, Color.Red, Font, Color.White, "");
                 localDebug = true;
                 nTxtLog.AppendText(" [ " + DateTime.Now + " ] DEBUG > " + "DEBUG ON" + Environment.NewLine);
+                
             }
             if (checkBox1.Checked == false)
             {
-                AppendText(this.nTxtLog, Color.Black, Font, Color.White, "");
+                //AppendText(this.nTxtLog, Color.Black, Font, Color.White, "");
                 localDebug = false;
                 nTxtLog.AppendText(" [ " + DateTime.Now + " ] " + "DEBUG OFF" + Environment.NewLine);
             }
@@ -151,6 +155,9 @@ namespace NTGServerAdminUtility
             
         }
 
-
+        private void nTxtLog_TextChanged(object sender, EventArgs e)
+        {
+            nTxtLog.ScrollCaret();
+        }
     }
 }

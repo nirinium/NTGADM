@@ -47,10 +47,8 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.dEBUGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nTxtLog = new System.Windows.Forms.RichTextBox();
             this.nStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.nTxtLog = new ScintillaNET.Scintilla();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -107,9 +105,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(192, 265);
+            this.button1.Location = new System.Drawing.Point(258, 6);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(156, 173);
             this.button1.TabIndex = 1;
             this.button1.Text = "Execute";
             this.button1.UseVisualStyleBackColor = true;
@@ -120,7 +118,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(274, 301);
+            this.tabPage3.Size = new System.Drawing.Size(420, 188);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Servers";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -170,8 +168,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
-            this.nStatus,
-            this.toolStripDropDownButton1});
+            this.nStatus});
             this.statusStrip1.Location = new System.Drawing.Point(0, 731);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(445, 22);
@@ -216,40 +213,21 @@
             this.toolStripMenuItem2.Text = "Clear";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
-            // toolStripDropDownButton1
-            // 
-            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dEBUGToolStripMenuItem});
-            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 20);
-            this.toolStripDropDownButton1.Text = "toolStripDropDownButton1";
-            // 
-            // dEBUGToolStripMenuItem
-            // 
-            this.dEBUGToolStripMenuItem.Name = "dEBUGToolStripMenuItem";
-            this.dEBUGToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.dEBUGToolStripMenuItem.Text = "DEBUG";
-            // 
-            // nTxtLog
-            // 
-            this.nTxtLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nTxtLog.ContextMenuStrip = this.contextMenuStrip1;
-            this.nTxtLog.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nTxtLog.Location = new System.Drawing.Point(12, 278);
-            this.nTxtLog.Name = "nTxtLog";
-            this.nTxtLog.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.nTxtLog.Size = new System.Drawing.Size(421, 450);
-            this.nTxtLog.TabIndex = 5;
-            this.nTxtLog.Text = "";
-            // 
             // nStatus
             // 
             this.nStatus.Name = "nStatus";
             this.nStatus.Size = new System.Drawing.Size(118, 17);
             this.nStatus.Text = "toolStripStatusLabel2";
+            // 
+            // nTxtLog
+            // 
+            this.nTxtLog.EdgeMode = ScintillaNET.EdgeMode.MultiLine;
+            this.nTxtLog.Location = new System.Drawing.Point(12, 288);
+            this.nTxtLog.Name = "nTxtLog";
+            this.nTxtLog.Size = new System.Drawing.Size(418, 440);
+            this.nTxtLog.TabIndex = 5;
+            this.nTxtLog.Text = "nTxtLog";
+            this.nTxtLog.UseTabs = true;
             // 
             // Form1
             // 
@@ -298,10 +276,8 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
-        private System.Windows.Forms.ToolStripMenuItem dEBUGToolStripMenuItem;
-        private System.Windows.Forms.RichTextBox nTxtLog;
         private System.Windows.Forms.ToolStripStatusLabel nStatus;
+        private ScintillaNET.Scintilla nTxtLog;
     }
 }
 
