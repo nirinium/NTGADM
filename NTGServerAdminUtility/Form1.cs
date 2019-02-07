@@ -25,6 +25,7 @@ namespace NTGServerAdminUtility
             InitializeComponent();
         }
 
+
         private void button1_Click(object sender, EventArgs e)
         {
             int selectedItem = listBox1.Items.IndexOf("Flush DNS");
@@ -39,11 +40,14 @@ namespace NTGServerAdminUtility
             }
             nTxtLog.AppendText(" [ " + DateTime.Now + " ] " + " Flushing DNS..." + Environment.NewLine);
             nTxtLog.AppendText(" [ " + DateTime.Now + " ] DEBUG " + "ITEM INDEX = " + selectedItem + Environment.NewLine);
+            
 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //nStatus
+            nTxtLog.AppendText(" [ " + DateTime.Now + " ] " + "Welcome to NTGADM, " + "Nirinium" + "! "+ Environment.NewLine);
 
         }
 
@@ -87,23 +91,44 @@ namespace NTGServerAdminUtility
             }
             else
             {
-
+                
                 //nTxtLog.AppendText(listBox1.GetItemText(listBox1.SelectedItem) + " is selected" + Environment.NewLine);
             }
 
         }
 
+
+        
+
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
+            void AppendText(RichTextBox nTxtBox, Color color, Font font, Color backcolor, string text)
+            {
+                int start = nTxtBox.TextLength;
+                nTxtBox.AppendText(text);
+                int end = nTxtBox.TextLength;
+
+                nTxtBox.Select(start, end - start);
+                {
+                    nTxtBox.SelectionColor = color;
+                    nTxtBox.SelectionFont = new Font("Consolas", 10);
+                    nTxtBox.BackColor = backcolor;
+                }
+                nTxtBox.SelectionLength = 0; // clear
+            }
+
             if (checkBox1.Checked == true)
             {
+
+                AppendText(this.nTxtLog, Color.LimeGreen, Font, Color.Black, "");
                 localDebug = true;
                 nTxtLog.AppendText(" [ " + DateTime.Now + " ] DEBUG > " + "DEBUG ON" + Environment.NewLine);
             }
             if (checkBox1.Checked == false)
             {
+                AppendText(this.nTxtLog, Color.Black, Font, Color.White, "");
                 localDebug = false;
-                nTxtLog.AppendText(" [ " + DateTime.Now + " ] DEBUG > " + "DEBUG OFF" + Environment.NewLine);
+                nTxtLog.AppendText(" [ " + DateTime.Now + " ] " + "DEBUG OFF" + Environment.NewLine);
             }
         }
 
@@ -111,5 +136,21 @@ namespace NTGServerAdminUtility
         {
             Application.Exit();
         }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure ?", "Question", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                nTxtLog.Clear();
+            }
+            else
+            {
+                //MessageBox.Show("You pressed Cancel!");
+            }
+
+            
+        }
+
+
     }
 }

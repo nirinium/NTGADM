@@ -28,25 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.button1 = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.nTxtLog = new System.Windows.Forms.TextBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.dEBUGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nTxtLog = new System.Windows.Forms.RichTextBox();
+            this.nStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -54,10 +63,10 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 27);
+            this.tabControl1.Location = new System.Drawing.Point(12, 35);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(282, 327);
+            this.tabControl1.Size = new System.Drawing.Size(428, 214);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -69,22 +78,21 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(274, 301);
+            this.tabPage1.Size = new System.Drawing.Size(420, 188);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Network";
             // 
             // listBox1
             // 
-            this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Items.AddRange(new object[] {
             "Flush DNS",
             "Register DNS",
             "Disable Network Adapters",
             "Enable Network Adapters"});
-            this.listBox1.Location = new System.Drawing.Point(3, 3);
+            this.listBox1.Location = new System.Drawing.Point(6, 6);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(268, 295);
+            this.listBox1.Size = new System.Drawing.Size(246, 173);
             this.listBox1.TabIndex = 5;
             this.listBox1.Click += new System.EventHandler(this.listBox1_Click);
             this.listBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseClick);
@@ -107,12 +115,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(274, 301);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Servers";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(664, 301);
+            this.tabPage2.Size = new System.Drawing.Size(274, 301);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Misc";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -125,7 +143,7 @@
             this.exitToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(453, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(445, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -151,36 +169,25 @@
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 720);
+            this.toolStripStatusLabel1,
+            this.nStatus,
+            this.toolStripDropDownButton1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 731);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(453, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(445, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // nTxtLog
+            // toolStripStatusLabel1
             // 
-            this.nTxtLog.Location = new System.Drawing.Point(12, 360);
-            this.nTxtLog.Multiline = true;
-            this.nTxtLog.Name = "nTxtLog";
-            this.nTxtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.nTxtLog.Size = new System.Drawing.Size(427, 345);
-            this.nTxtLog.TabIndex = 3;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(664, 301);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Servers";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(50, 17);
+            this.toolStripStatusLabel1.Text = "STATUS:";
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(375, 337);
+            this.checkBox1.Location = new System.Drawing.Point(372, 255);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(64, 17);
             this.checkBox1.TabIndex = 4;
@@ -188,24 +195,76 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // toolStripStatusLabel1
+            // contextMenuStrip1
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(95, 17);
-            this.toolStripStatusLabel1.Text = "STATUS: ONLINE";
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(102, 48);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(101, 22);
+            this.toolStripMenuItem1.Text = "Save";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(101, 22);
+            this.toolStripMenuItem2.Text = "Clear";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dEBUGToolStripMenuItem});
+            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 20);
+            this.toolStripDropDownButton1.Text = "toolStripDropDownButton1";
+            // 
+            // dEBUGToolStripMenuItem
+            // 
+            this.dEBUGToolStripMenuItem.Name = "dEBUGToolStripMenuItem";
+            this.dEBUGToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dEBUGToolStripMenuItem.Text = "DEBUG";
+            // 
+            // nTxtLog
+            // 
+            this.nTxtLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.nTxtLog.ContextMenuStrip = this.contextMenuStrip1;
+            this.nTxtLog.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nTxtLog.Location = new System.Drawing.Point(12, 278);
+            this.nTxtLog.Name = "nTxtLog";
+            this.nTxtLog.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.nTxtLog.Size = new System.Drawing.Size(421, 450);
+            this.nTxtLog.TabIndex = 5;
+            this.nTxtLog.Text = "";
+            // 
+            // nStatus
+            // 
+            this.nStatus.Name = "nStatus";
+            this.nStatus.Size = new System.Drawing.Size(118, 17);
+            this.nStatus.Text = "toolStripStatusLabel2";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(453, 742);
-            this.Controls.Add(this.checkBox1);
+            this.ClientSize = new System.Drawing.Size(445, 753);
             this.Controls.Add(this.nTxtLog);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NTGADM";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
@@ -214,6 +273,7 @@
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -230,12 +290,18 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.TextBox nTxtLog;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripMenuItem dEBUGToolStripMenuItem;
+        private System.Windows.Forms.RichTextBox nTxtLog;
+        private System.Windows.Forms.ToolStripStatusLabel nStatus;
     }
 }
 
