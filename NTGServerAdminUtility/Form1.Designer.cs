@@ -48,9 +48,18 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.nStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.nTxtLog = new ScintillaNET.Scintilla();
+            this.TextPanel = new System.Windows.Forms.Panel();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.nSvrPing = new System.Windows.Forms.Button();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -64,19 +73,19 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 35);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(428, 214);
+            this.tabControl1.Size = new System.Drawing.Size(648, 214);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage1.BackColor = System.Drawing.SystemColors.Window;
             this.tabPage1.Controls.Add(this.listBox1);
             this.tabPage1.Controls.Add(this.progressBar1);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(420, 188);
+            this.tabPage1.Size = new System.Drawing.Size(640, 188);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Network";
             // 
@@ -107,7 +116,7 @@
             // 
             this.button1.Location = new System.Drawing.Point(258, 6);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(156, 173);
+            this.button1.Size = new System.Drawing.Size(56, 23);
             this.button1.TabIndex = 1;
             this.button1.Text = "Execute";
             this.button1.UseVisualStyleBackColor = true;
@@ -115,10 +124,18 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.button3);
+            this.tabPage3.Controls.Add(this.button5);
+            this.tabPage3.Controls.Add(this.button4);
+            this.tabPage3.Controls.Add(this.textBox1);
+            this.tabPage3.Controls.Add(this.button2);
+            this.tabPage3.Controls.Add(this.checkBox2);
+            this.tabPage3.Controls.Add(this.nSvrPing);
+            this.tabPage3.Controls.Add(this.listBox2);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(420, 188);
+            this.tabPage3.Size = new System.Drawing.Size(640, 188);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Servers";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -128,7 +145,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(274, 301);
+            this.tabPage2.Size = new System.Drawing.Size(640, 188);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Misc";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -141,7 +158,7 @@
             this.exitToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(445, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(674, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -171,7 +188,7 @@
             this.nStatus});
             this.statusStrip1.Location = new System.Drawing.Point(0, 731);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(445, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(674, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -184,7 +201,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(372, 255);
+            this.checkBox1.Location = new System.Drawing.Point(592, 255);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(64, 17);
             this.checkBox1.TabIndex = 4;
@@ -219,21 +236,97 @@
             this.nStatus.Size = new System.Drawing.Size(118, 17);
             this.nStatus.Text = "toolStripStatusLabel2";
             // 
-            // nTxtLog
+            // TextPanel
             // 
-            this.nTxtLog.EdgeMode = ScintillaNET.EdgeMode.MultiLine;
-            this.nTxtLog.Location = new System.Drawing.Point(12, 278);
-            this.nTxtLog.Name = "nTxtLog";
-            this.nTxtLog.Size = new System.Drawing.Size(418, 450);
-            this.nTxtLog.TabIndex = 5;
-            this.nTxtLog.UseTabs = true;
+            this.TextPanel.Location = new System.Drawing.Point(12, 278);
+            this.TextPanel.Name = "TextPanel";
+            this.TextPanel.Size = new System.Drawing.Size(648, 450);
+            this.TextPanel.TabIndex = 6;
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Items.AddRange(new object[] {
+            "K3-WIN-DEV-COLT",
+            "192.168.1.1"});
+            this.listBox2.Location = new System.Drawing.Point(6, 6);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(244, 173);
+            this.listBox2.TabIndex = 0;
+            // 
+            // nSvrPing
+            // 
+            this.nSvrPing.Location = new System.Drawing.Point(257, 6);
+            this.nSvrPing.Name = "nSvrPing";
+            this.nSvrPing.Size = new System.Drawing.Size(108, 23);
+            this.nSvrPing.TabIndex = 1;
+            this.nSvrPing.Text = "Ping Hostname";
+            this.nSvrPing.UseVisualStyleBackColor = true;
+            this.nSvrPing.Click += new System.EventHandler(this.nSvrPing_Click);
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(561, 10);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(73, 17);
+            this.checkBox2.TabIndex = 2;
+            this.checkBox2.Text = "Poll Hosts";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(257, 35);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(108, 23);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "Connect...";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(257, 158);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(241, 20);
+            this.textBox1.TabIndex = 4;
+            // 
+            // button3
+            // 
+            this.button3.BackgroundImage = global::NTGServerAdminUtility.Properties.Resources.UX_UI_Icon_processed_43;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button3.Location = new System.Drawing.Point(466, 120);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(32, 32);
+            this.button3.TabIndex = 8;
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.BackgroundImage = global::NTGServerAdminUtility.Properties.Resources.UX_UI_Icon_processed_48;
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button5.Location = new System.Drawing.Point(294, 120);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(32, 32);
+            this.button5.TabIndex = 7;
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.BackgroundImage = global::NTGServerAdminUtility.Properties.Resources.UX_UI_Icon_processed_46;
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button4.Location = new System.Drawing.Point(256, 120);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(32, 32);
+            this.button4.TabIndex = 6;
+            this.button4.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(445, 753);
-            this.Controls.Add(this.nTxtLog);
+            this.ClientSize = new System.Drawing.Size(674, 753);
+            this.Controls.Add(this.TextPanel);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
@@ -246,6 +339,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -276,7 +371,15 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripStatusLabel nStatus;
-        private ScintillaNET.Scintilla nTxtLog;
+        private System.Windows.Forms.Panel TextPanel;
+        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.Button nSvrPing;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button3;
     }
 }
 

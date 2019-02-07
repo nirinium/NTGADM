@@ -12,11 +12,14 @@ using System.Threading;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using ScintillaNET;
+using System.Net.NetworkInformation;
+
 
 namespace NTGServerAdminUtility
 {
     public partial class Form1 : Form
     {
+        ScintillaNET.Scintilla nTxtLog;
 
         private bool executeClicked = false;
         private bool localDebug = false;
@@ -41,17 +44,33 @@ namespace NTGServerAdminUtility
                     
                 }
             }
-            nTxtLog.AppendText(" [ " + DateTime.Now + " ] " + " Flushing DNS..." + Environment.NewLine);
-            nTxtLog.AppendText(" [ " + DateTime.Now + " ] DEBUG " + "ITEM INDEX = " + selectedItem + Environment.NewLine);
-            
-            
+            nTxtLog.AppendText(" [ " + DateTime.Now + " ] " + "Flushing DNS..." + Environment.NewLine);
+            if (localDebug == true)
+            {
+                nTxtLog.AppendText(" [ " + DateTime.Now + " ] DEBUG > " + "ITEM INDEX = [" + selectedItem + "]" + Environment.NewLine);
+
+            }
+
+
 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             //nStatus
-            nTxtLog.AppendText(" [ " + DateTime.Now + " ] " + "Welcome to NTGADM, " + "Nirinium" + "! "+ Environment.NewLine);
+            // CREATE CONTROL
+            nTxtLog = new ScintillaNET.Scintilla();
+            TextPanel.Controls.Add(nTxtLog);
+
+            // BASIC CONFIG
+            nTxtLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            //          TextArea.TextChanged += (this.OnTextChanged);
+
+            // INITIAL VIEW CONFIG
+            nTxtLog.WrapMode = WrapMode.None;
+            nTxtLog.IndentationGuides = IndentView.LookBoth;
+
+            nTxtLog.AppendText(" [ " + DateTime.Now + " ] " + "Welcome to NTGADM, " + "Nirinium" + "! " + Environment.NewLine);
 
         }
 
@@ -156,9 +175,39 @@ namespace NTGServerAdminUtility
             
         }
 
-        private void nTxtLog_TextChanged(object sender, EventArgs e)
+        private void nSvrPing_Click(object sender, EventArgs e)
         {
-            nTxtLog.ScrollCaret();
+            int timeout = 10;   //in ms
+
+            Ping p = new Ping();
+            PingReply rep = p.Send(listBox2.GetItemText(listBox2.SelectedItem), timeout);
+
+            if (rep.Status == IPStatus.Success)
+            {
+                nTxtLog.AppendText(" [ " + DateTime.Now + " ] " + listBox2.GetItemText(listBox2.SelectedItem) + " is pingable" + Environment.NewLine);
+
+            }
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            int timeout = 10;   //in ms
+
+            Ping p = new Ping();
+            PingReply rep = p.Send(listBox2.GetItemText(listBox2.SelectedItem), timeout);
+
+            foreach (object item in listBox2.Items)
+            {
+                if (rep.Status == IPStatus.Success)
+                {
+                    listBox2.ForeColor = Color.Green;
+                    nTxtLog.AppendText(" [ " + DateTime.Now + " ] " + listBox2.GetItemText(listBox2.SelectedItem) + " is pingable" + Environment.NewLine);
+                }
+                else
+                {
+                    listBox2.ForeColor = Color.Red;
+                }
+            }
         }
     }
 }
