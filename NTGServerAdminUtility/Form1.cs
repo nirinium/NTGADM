@@ -13,13 +13,13 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using ScintillaNET;
 using System.Net.NetworkInformation;
-
+using System.IO;
 
 namespace NTGServerAdminUtility
 {
     public partial class Form1 : Form
     {
-        ScintillaNET.Scintilla nTxtLog;
+        Scintilla nTxtLog;
 
         private bool executeClicked = false;
         private bool localDebug = false;
@@ -29,6 +29,20 @@ namespace NTGServerAdminUtility
             InitializeComponent();
             nStatus.ForeColor = Color.Green;
             nStatus.Text = "Connected!";
+            //nStatus
+            // CREATE CONTROL
+            nTxtLog = new Scintilla();
+            TextPanel.Controls.Add(nTxtLog);
+
+            // BASIC CONFIG
+            nTxtLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            //TextArea.TextChanged += (this.OnTextChanged);
+
+            // INITIAL VIEW CONFIG
+            nTxtLog.WrapMode = WrapMode.None;
+            nTxtLog.IndentationGuides = IndentView.LookBoth;
+
+            nTxtLog.AppendText(" [ " + DateTime.Now + " ] " + "Welcome to NTGADM, " + "Nirinium" + "! " + Environment.NewLine);
         }
 
 
@@ -59,19 +73,19 @@ namespace NTGServerAdminUtility
         {
             //nStatus
             // CREATE CONTROL
-            nTxtLog = new ScintillaNET.Scintilla();
+            nTxtLog = new Scintilla();
             TextPanel.Controls.Add(nTxtLog);
 
             // BASIC CONFIG
             nTxtLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            //          TextArea.TextChanged += (this.OnTextChanged);
+            //TextArea.TextChanged += (this.OnTextChanged);
 
             // INITIAL VIEW CONFIG
             nTxtLog.WrapMode = WrapMode.None;
             nTxtLog.IndentationGuides = IndentView.LookBoth;
 
             nTxtLog.AppendText(" [ " + DateTime.Now + " ] " + "Welcome to NTGADM, " + "Nirinium" + "! " + Environment.NewLine);
-
+            
         }
 
 
@@ -150,7 +164,7 @@ namespace NTGServerAdminUtility
             }
             if (checkBox1.Checked == false)
             {
-                //AppendText(this.nTxtLog, Color.Black, Font, Color.White, "");
+                //AppendText(nTxtLog, Color.Black, Font, Color.White, "");
                 localDebug = false;
                 nTxtLog.AppendText(" [ " + DateTime.Now + " ] " + "DEBUG OFF" + Environment.NewLine);
             }
@@ -158,7 +172,6 @@ namespace NTGServerAdminUtility
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Exit();
         }
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
@@ -185,29 +198,128 @@ namespace NTGServerAdminUtility
             if (rep.Status == IPStatus.Success)
             {
                 nTxtLog.AppendText(" [ " + DateTime.Now + " ] " + listBox2.GetItemText(listBox2.SelectedItem) + " is pingable" + Environment.NewLine);
-
+            }
+            else
+            {
+                p.Dispose();
             }
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            int timeout = 10;   //in ms
+            listBox2.SelectedIndex = 0;
 
-            Ping p = new Ping();
-            PingReply rep = p.Send(listBox2.GetItemText(listBox2.SelectedItem), timeout);
-
-            foreach (object item in listBox2.Items)
+            if (checkBox2.Checked == true)
             {
+                int timeout = 10;   //in ms
+
+                Ping p = new Ping();
+                PingReply rep = p.Send(listBox2.GetItemText(listBox2.SelectedItems[0]), timeout);
+
                 if (rep.Status == IPStatus.Success)
                 {
                     listBox2.ForeColor = Color.Green;
-                    nTxtLog.AppendText(" [ " + DateTime.Now + " ] " + listBox2.GetItemText(listBox2.SelectedItem) + " is pingable" + Environment.NewLine);
+                    listBox2.Font = new Font("Consolas", 10, FontStyle.Bold);
+                    nTxtLog.AppendText(" [ " + DateTime.Now + " ] " + listBox2.GetItemText(listBox2.SelectedItems.ToString()) + " is pingable" + Environment.NewLine);
                 }
                 else
                 {
                     listBox2.ForeColor = Color.Red;
                 }
             }
+            else
+            {
+                return;
+            }
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == null)
+            {
+
+            }
+            else
+            {
+                listBox2.Items.Add(textBox1.Text);
+            }
+            textBox1.Clear();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (listBox2.SelectedItem == null)
+            {
+                //
+            }
+            else
+            {
+                listBox2.Items.Remove(listBox2.SelectedItem);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            const string sPath = "servers.txt";
+
+            System.IO.StreamWriter SaveFile = new System.IO.StreamWriter(sPath);
+            foreach (var item in listBox2.Items)
+            {
+                SaveFile.WriteLine(item);
+            }
+
+            SaveFile.Close();
+
+            MessageBox.Show("Programs saved!");
+        }
+
+        private void serversLoad()
+        {
+            StreamReader sr = new StreamReader("servers.txt");
+            string line = string.Empty;
+            try
+            {
+                //Read the first line of text
+                line = sr.ReadLine();
+                //Continue to read until you reach end of file
+                while (line != null)
+                {
+                    this.listBox2.Items.Add(line);
+                    //Read the next line
+                    line = sr.ReadLine();
+                }
+
+                //close the file
+                sr.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+            finally
+            {
+                //close the file
+                sr.Close();
+            }
+            //listBox2.Items.Clear();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            serversLoad();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void exitToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            Application.Exit();
+
         }
     }
 }
+

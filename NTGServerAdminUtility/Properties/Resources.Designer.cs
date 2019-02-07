@@ -63,6 +63,16 @@ namespace NTGServerAdminUtility.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap UX_UI_Icon_processed_06 {
+            get {
+                object obj = ResourceManager.GetObject("UX-UI-Icon_processed-06", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap UX_UI_Icon_processed_43 {
             get {
                 object obj = ResourceManager.GetObject("UX-UI-Icon_processed-43", resourceCulture);
